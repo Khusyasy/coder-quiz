@@ -1,6 +1,7 @@
 <template>
   <div class="quiz">
     <div v-if="$store.state.play">
+      <p class="quiz-info">{{$store.state.tag}} {{$store.state.diff}}</p>
       <h1>
         {{ $store.state.quiz?.question || 'Loading...' }}
       </h1>
@@ -27,6 +28,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "../variables";
+.quiz-info{
+  position: absolute;
+  top: 0;
+  color: $white;
+  font-family: $font-code;
+  font-size: 0.85rem;
+}
 h1 {
   color: $white;
   font-family: $font-code;
@@ -38,6 +46,7 @@ h1 {
   background-color: $green;
   border-radius: 5px;
   padding: 2rem;
+  position: relative;
 }
 .btn-play{
   background-color: $green;
