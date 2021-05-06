@@ -27,7 +27,7 @@ export default {
         this.wrong = true;
         this.$store.commit('scoreSub', 25);
       }
-      await this.$store.dispatch('getRandomQuiz', this.$store.state.tag);
+      await this.$store.dispatch('getRandomQuiz', { tag: this.$store.state.tag, diff: this.$store.state.diff});
       this.correct = false;
       this.wrong = false;
       this.$store.commit('submitingSet', false)

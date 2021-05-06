@@ -1,7 +1,7 @@
 <template>
     <div class="start-menu">
         <p>Choose a category</p>
-        <div class="categories-container">
+        <form class="container">
             <div
                 v-for="cat in catItems"
                 :key="cat"
@@ -12,11 +12,26 @@
                     :value="cat"
                     type="radio"
                     v-model="catSelected"
-                    checked
                 >
                 <label :for="cat">{{cat}}</label>
             </div>
-        </div>
+        </form>
+        <p>Choose a difficulty</p>
+        <form class="container">
+            <div
+                v-for="diff in diffItems"
+                :key="diff"
+            >
+                <input
+                    :id="diff"
+                    name="diff"
+                    :value="diff"
+                    type="radio"
+                    v-model="diffSelected"
+                >
+                <label :for="diff">{{diff}}</label>
+            </div>
+        </form>
         <button class="btn-play" @click="play">PLAY</button>
     </div>
 </template>
@@ -29,18 +44,24 @@ export default {
           catItems: [
               'Linux',
               'PHP',
-              'Python',
               'HTML',
-              'JS',
+              'Javascript',
           ],
           catSelected: '',
+          diffItems: [
+              'Hard',
+              'Medium',
+              'Easy',
+          ],
+          diffSelected: '',
       }
   },
   methods: {
-      async play(){
+      play(){
+        this.$store.commit('diffSet', this.diffSelected);
         this.$store.commit('tagSet', this.catSelected);
-        await this.$store.commit('playSet', true);
-        this.$store.dispatch('getRandomQuiz', this.catSelected);
+        this.$store.commit('playSet', true);
+        this.$store.dispatch('getRandomQuiz', { tag: this.catSelected, diff: this.diffSelected});
       }
   }
 }
@@ -52,7 +73,7 @@ export default {
     color: $white;
 }
 
-.categories-container{
+.container{
     display: flex;
     flex-direction: row;
     justify-content: space-around;

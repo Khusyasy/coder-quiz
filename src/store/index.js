@@ -8,7 +8,8 @@ export default createStore({
         quiz: {},
         play: false,
         submiting: false,
-        tag: ''
+        tag: '',
+        diff: '',
     },
     mutations: {
         scoreAdd(state, val) {
@@ -40,12 +41,15 @@ export default createStore({
         },
         tagSet(state, val) {
             state.tag = val;
+        },
+        diffSet(state, val) {
+            state.diff = val;
         }
     },
     actions: {
-        async getRandomQuiz({ commit }, tag) {
-            console.log('https://quizapi.io/api/v1/questions?limit=1&tags=' + tag);
-            await axios.get('https://quizapi.io/api/v1/questions?limit=1&tags=' + tag, {
+        async getRandomQuiz({ commit }, { tag, diff }) {
+            console.log(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`);
+            await axios.get(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`, {
                 headers: {
                     'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',
                 }
