@@ -48,7 +48,6 @@ export default createStore({
     },
     actions: {
         async getRandomQuiz({ commit }, { tag, diff }) {
-            console.log(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`);
             await axios.get(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`, {
                 headers: {
                     'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',

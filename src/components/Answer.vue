@@ -16,11 +16,15 @@ export default {
   },
   methods: {
     async clicked(){
+      var correct_answers = this.$store.state.quiz?.correct_answers;
+      correct_answers = Object.entries(correct_answers)
+                        .map( ([key, value])=>value=='true'?key.substr(0,8):false )
+                        .filter(e=>e);
       if(this.$store.state.submiting){
         return false;
       }
       this.$store.commit('submitingSet', true)
-      if(this.$store.state.quiz?.correct_answer == this.option){
+      if(correct_answers.indexOf(this.option) > -1){
         this.correct = true;
         this.$store.commit('scoreAdd', 100);
       }else{
