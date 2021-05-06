@@ -1,10 +1,17 @@
 $green: hsl(103, 55%, 55%);
 $green-d: hsl(103, 55%, 35%);
 $green-l: hsl(103, 55%, 70%);
-$blue: #4482d4;
-$red: #ce3a35;
-$black: #1b1b1b;
-$white: #f1f1f1;
+$blue: hsl(214, 63%, 55%);
+$blue-d: hsl(214, 63%, 35%);
+$blue-l: hsl(214, 63%, 70%);
+$red: hsl(2, 61%, 50%);
+$red-d: hsl(2, 61%, 30%);
+$red-l: hsl(2, 61%, 65%);
+$black: hsl(0, 0%, 15%);
+$white: hsl(0, 0%, 90%);
+$gray: hsl(0, 0%, 50%);
+$gray-d: hsl(0, 0%, 30%);
+$gray-l: hsl(0, 0%, 80%);
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 
