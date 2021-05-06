@@ -1,19 +1,13 @@
 <template>
   <div class="game-bar">
-    <p>Score: <span class="big">{{score}}</span></p>
-    <p>Time: <span class="big">{{time}}</span> s</p>
+    <p>Score: <span class="big">{{$store.state.score}}</span></p>
+    <p>Time: <span class="big">{{$store.state.time}}</span> s</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'GameBar',
-  data () {
-    return {
-      score: 0,
-      time: 0
-    }
-  }
 }
 </script>
 

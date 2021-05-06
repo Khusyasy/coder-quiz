@@ -1,5 +1,5 @@
 <template>
-  <p class="answer" v-if="text">
+  <p :class="{answer: true, wrong: wrong, correct: correct}" v-if="text" @click="clicked">
     {{text}}
   </p>
 </template>
@@ -7,7 +7,27 @@
 <script>
 export default {
   name: 'Answer',
-  props: ['text']
+  props: ['text', 'option'],
+  data(){
+    return {
+      correct: false,
+      wrong: false,
+    }
+  },
+  methods: {
+    async clicked(){
+      if(this.$store.state.quiz?.correct_answer == this.option){
+        this.correct = true;
+        await this.$store.commit('scoreAdd', 100);
+      }else{
+        this.wrong = true;
+        await this.$store.commit('scoreSub', 25);
+      }
+      await this.$store.dispatch('getRandomQuiz');
+      this.correct = false;
+      this.wrong = false;
+    }
+  }
 }
 </script>
 
@@ -26,6 +46,16 @@ export default {
   &:hover {
     background-color: $green-l;
     color: $black;
+  }
+
+  &.wrong{
+    background-color: $red-l;
+    color: $black;
+  }
+
+  &.correct{
+    background-color: $green-d;
+    color: $white;
   }
 }
 </style>

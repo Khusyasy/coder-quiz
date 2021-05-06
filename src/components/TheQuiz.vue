@@ -2,9 +2,9 @@
   <div class="quiz">
     <button @click="$store.dispatch('getRandomQuiz')">CLICK</button>
     <h1>
-      {{ $store.state.quiz?.question }}
+      {{ $store.state.quiz?.question || 'Loading...' }}
     </h1>
-    <Answer v-for="(answer, option) in $store.state.quiz?.answers" :key="option" :text="answer" />
+    <Answer v-for="(answer, option) in $store.state.quiz?.answers" :key="option" :text="answer" :option="option" />
   </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
   components: {
     Answer
   },
+  created() {
+    this.$store.dispatch('getRandomQuiz');
+  }
 }
 </script>
 
