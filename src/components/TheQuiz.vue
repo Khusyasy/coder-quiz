@@ -32,12 +32,12 @@ export default {
 <style lang="scss" scoped>
 @import "../variables";
 h1 {
-  color: $black;
+  color: $white;
 }
 .quiz {
   max-width: 70ch;
   min-width: 45ch;
-  background-color: $green-l;
+  background-color: $green;
   border-radius: 5px;
   padding: 2rem;
 }

@@ -16,18 +16,18 @@ export default {
 <style lang="scss" scoped>
 @import "../variables";
 .answer {
-  background-color: $green-l;
-  color: $black;
+  background-color: $green;
+  color: $white;
   width: 100%;
-  border-top: 1px solid $green-d;
-  border-bottom: 1px solid $green-d;
+  border-top: 1px solid $green-l;
+  border-bottom: 1px solid $green-l;
   padding: 0.5rem 0;
   margin: 0.5rem 0;
   cursor: pointer;
 
   &:hover {
-    background-color: $green;
-    color: $white;
+    background-color: $green-l;
+    color: $black;
   }
 }
 </style>
