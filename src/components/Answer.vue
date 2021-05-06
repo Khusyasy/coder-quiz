@@ -1,5 +1,5 @@
 <template>
-  <p class="answer">
+  <p class="answer" v-if="text">
     {{text}}
   </p>
 </template>
@@ -7,9 +7,7 @@
 <script>
 export default {
   name: 'Answer',
-  props: {
-    text: String
-  }
+  props: ['text']
 }
 </script>
 

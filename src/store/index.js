@@ -1,12 +1,46 @@
 import { createStore } from 'vuex'
+import axios from "axios"
 
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    state: {
+        score: 0,
+        time: 0,
+        quiz: {}
+    },
+    mutations: {
+        scoreAdd(state, val) {
+            state.score += val;
+        },
+        scoreSub(state, val) {
+            state.score -= val;
+        },
+        scoreSet(state, val) {
+            state.score = val;
+        },
+        timeAdd(state, val) {
+            state.time += val;
+        },
+        timeSub(state, val) {
+            state.time -= val;
+        },
+        timeSet(state, val) {
+            state.time = val;
+        },
+        quizSet(state, val) {
+            state.quiz = val;
+        }
+    },
+    actions: {
+        async getRandomQuiz({ commit }) {
+            await axios.get('https://quizapi.io/api/v1/questions?limit=1', {
+                headers: {
+                    'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',
+                }
+            }).then(res => {
+                commit('quizSet', res.data[0]);
+            });
+        }
+    },
+    modules: {
+    }
 })
