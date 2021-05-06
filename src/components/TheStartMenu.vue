@@ -15,6 +15,17 @@
                 >
                 <label :for="cat">{{cat}}</label>
             </div>
+            <div>
+                <input
+                        id="randomCat"
+                        name="categories"
+                        value=""
+                        type="radio"
+                        v-model="catSelected"
+                        checked
+                    >
+                <label for="randomCat">Random</label>
+            </div>
         </form>
         <p>Choose a difficulty</p>
         <form class="container">
@@ -30,6 +41,17 @@
                     v-model="diffSelected"
                 >
                 <label :for="diff">{{diff}}</label>
+            </div>
+            <div>
+                <input
+                        id="randomDiff"
+                        name="diff"
+                        value=""
+                        type="radio"
+                        v-model="diffSelected"
+                        checked
+                    >
+                <label for="randomDiff">Random</label>
             </div>
         </form>
         <button class="btn-play" @click="play">PLAY</button>

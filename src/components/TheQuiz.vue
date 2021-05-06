@@ -1,7 +1,7 @@
 <template>
   <div class="quiz">
     <div v-if="$store.state.play">
-      <p class="quiz-info">{{$store.state.tag}} {{$store.state.diff}}</p>
+      <p class="quiz-info">{{ $store.state.tag || 'Random' }} {{ $store.state.diff || 'Random' }}</p>
       <h1>
         {{ $store.state.quiz?.question || 'Loading...' }}
       </h1>
@@ -33,7 +33,8 @@ export default {
   top: 0;
   color: $white;
   font-family: $font-code;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  padding: 0.1rem;
 }
 h1 {
   color: $white;
