@@ -7,22 +7,21 @@
       <Answer v-for="(answer, option) in $store.state.quiz?.answers" :key="option" :text="answer" :option="option" />
       </div>
     <div v-else>
-      <button class="btn-play" @click="$store.commit('playSet', true)">PLAY</button>
+      <StartMenu />
     </div>
   </div>
 </template>
 
 <script>
 import Answer from './Answer'
+import StartMenu from './TheStartMenu'
 
 export default {
   name: 'Quiz',
   components: {
-    Answer
+    Answer,
+    StartMenu
   },
-  created() {
-    this.$store.dispatch('getRandomQuiz');
-  }
 }
 </script>
 

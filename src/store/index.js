@@ -7,7 +7,8 @@ export default createStore({
         time: 0,
         quiz: {},
         play: false,
-        submiting: false
+        submiting: false,
+        tag: ''
     },
     mutations: {
         scoreAdd(state, val) {
@@ -36,11 +37,15 @@ export default createStore({
         },
         submitingSet(state, val) {
             state.submiting = val;
+        },
+        tagSet(state, val) {
+            state.tag = val;
         }
     },
     actions: {
-        async getRandomQuiz({ commit }) {
-            await axios.get('https://quizapi.io/api/v1/questions?limit=1', {
+        async getRandomQuiz({ commit }, tag) {
+            console.log('https://quizapi.io/api/v1/questions?limit=1&tags=' + tag);
+            await axios.get('https://quizapi.io/api/v1/questions?limit=1&tags=' + tag, {
                 headers: {
                     'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',
                 }
