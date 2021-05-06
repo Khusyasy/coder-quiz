@@ -5,7 +5,9 @@ export default createStore({
     state: {
         score: 0,
         time: 0,
-        quiz: {}
+        quiz: {},
+        play: false,
+        submiting: false
     },
     mutations: {
         scoreAdd(state, val) {
@@ -28,6 +30,12 @@ export default createStore({
         },
         quizSet(state, val) {
             state.quiz = val;
+        },
+        playSet(state, val) {
+            state.play = val;
+        },
+        submitingSet(state, val) {
+            state.submiting = val;
         }
     },
     actions: {

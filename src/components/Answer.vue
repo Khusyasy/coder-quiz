@@ -16,16 +16,21 @@ export default {
   },
   methods: {
     async clicked(){
+      if(this.$store.state.submiting){
+        return false;
+      }
+      this.$store.commit('submitingSet', true)
       if(this.$store.state.quiz?.correct_answer == this.option){
         this.correct = true;
-        await this.$store.commit('scoreAdd', 100);
+        this.$store.commit('scoreAdd', 100);
       }else{
         this.wrong = true;
-        await this.$store.commit('scoreSub', 25);
+        this.$store.commit('scoreSub', 25);
       }
       await this.$store.dispatch('getRandomQuiz');
       this.correct = false;
       this.wrong = false;
+      this.$store.commit('submitingSet', false)
     }
   }
 }
