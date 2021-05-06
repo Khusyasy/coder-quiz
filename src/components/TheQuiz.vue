@@ -1,6 +1,5 @@
 <template>
   <div class="quiz">
-    <button @click="$store.dispatch('getRandomQuiz')">CLICK</button>
     <h1>
       {{ $store.state.quiz?.question || 'Loading...' }}
     </h1>
@@ -26,6 +25,8 @@ export default {
 @import "../variables";
 h1 {
   color: $white;
+  font-family: $font-code;
+  padding: 1rem;
 }
 .quiz {
   max-width: 70ch;
