@@ -1,29 +1,57 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div>
+      <h1>CoderQuiz</h1>
+    </div>
+    <div>
+      <router-link :to="{name: 'Play'}">Play</router-link>
+      <router-link :to="{name: 'About'}">About</router-link>
+      <router-link to="/login">Login</router-link>
+    </div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="scss">
+@import "variables";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $font-main;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $black;
 }
 
 #nav {
-  padding: 30px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  background-color: $green;
+
+  h1 {
+    margin: 0;
+    color: $white;
+  }
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: $white;
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: $green;
+      background-color: $white;
     }
   }
 }
