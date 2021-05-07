@@ -16,9 +16,9 @@
 @import "variables";
 
 :root{
-  font-size: 0.9rem;
+  font-size: 12px;
   @include for-desktop{
-    font-size: 1rem;
+    font-size: 16px;
   }
 }
 

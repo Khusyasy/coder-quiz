@@ -42,6 +42,10 @@ h1 {
   color: $white;
   font-family: $font-code;
   padding: 1rem;
+  font-size: 1.5rem;
+  @include for-desktop{
+    font-size: 2rem;
+  }
 }
 .quiz {
   width: 100%;
