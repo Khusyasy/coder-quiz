@@ -6,7 +6,7 @@
     <div>
       <router-link :to="{name: 'Play'}">Play</router-link>
       <router-link :to="{name: 'About'}">About</router-link>
-      <router-link to="/login">Login</router-link>
+      <!-- <router-link to="/login">Login</router-link> -->
     </div>
   </div>
   <router-view />
@@ -14,6 +14,13 @@
 
 <style lang="scss">
 @import "variables";
+
+:root{
+  font-size: 0.9rem;
+  @include for-desktop{
+    font-size: 1rem;
+  }
+}
 
 html,
 body {

@@ -17,3 +17,11 @@ $gray-l: hsl(0, 0%, 80%);
 
 $font-main: 'Roboto', sans-serif;
 $font-code: 'Open Sans', sans-serif;
+
+$desktop-width: 1024px;
+
+@mixin for-desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

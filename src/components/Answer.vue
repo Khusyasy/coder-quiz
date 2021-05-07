@@ -48,15 +48,18 @@ export default {
   transition: ease-in-out 150ms;
   width: 100%;
   border: 2px solid $green-l;
-  padding: 0.5rem 0;
-  margin: 0.75rem 0;
+  padding: 1rem 0;
+  margin: 1rem 0;
   font-family: $font-code;
   font-size: 1.2rem;
+  text-justify: inter-word;
   cursor: pointer;
 
-  &:hover {
-    background-color: $green-l;
-    color: $black;
+  @include for-desktop{
+    &:hover {
+      background-color: $green-l;
+      color: $black;
+    }
   }
 
   &.wrong{

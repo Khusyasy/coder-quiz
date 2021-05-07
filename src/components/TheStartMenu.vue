@@ -3,6 +3,7 @@
         <p>Choose a category</p>
         <form class="container">
             <div
+                class="btn-container"
                 v-for="cat in catItems"
                 :key="cat"
             >
@@ -15,7 +16,7 @@
                 >
                 <label :for="cat">{{cat}}</label>
             </div>
-            <div>
+            <div class="btn-container">
                 <input
                         id="randomCat"
                         name="categories"
@@ -30,6 +31,7 @@
         <p>Choose a difficulty</p>
         <form class="container">
             <div
+                class="btn-container"
                 v-for="diff in diffItems"
                 :key="diff"
             >
@@ -42,7 +44,7 @@
                 >
                 <label :for="diff">{{diff}}</label>
             </div>
-            <div>
+            <div class="btn-container">
                 <input
                         id="randomDiff"
                         name="diff"
@@ -92,15 +94,17 @@ export default {
 <style lang="scss" scoped>
 @import "../variables";
 .start-menu{
+    margin: 1rem;
     color: $white;
 }
 
 .container{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    padding-bottom: 1rem;
-    margin: 0.5rem;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+    justify-content: space-evenly;
+    margin-bottom: 1.5rem;
 
     & input{
         display: none;
@@ -131,19 +135,19 @@ export default {
 }
 
 .btn-play{
-  background-color: $green;
-  color: $white;
-  transition: ease-in-out 150ms;
-  width: 100%;
-  border: 2px solid $green-l;
-  padding: 0.5rem 0;
-  font-family: $font-code;
-  font-size: 2rem;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: $green-l;
-    color: $black;
-  }
+    background-color: $green;
+    color: $white;
+    transition: ease-in-out 150ms;
+    width: 100%;
+    border: 2px solid $green-l;
+    padding: 0.5rem 0;
+    font-family: $font-code;
+    font-size: 2rem;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: $green-l;
+        color: $black;
+    }
 }
 </style>

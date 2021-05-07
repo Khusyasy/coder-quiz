@@ -16,7 +16,7 @@ export default {
 
 .game-bar {
   width: 100%;
-  max-width: 45ch;
+  max-width: 70ch;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -25,7 +25,7 @@ export default {
   color: $white;
   background-color: $green;
   border-radius: 5px;
-  margin: 0.5rem;
+  margin: 1rem 0;
 
   p{
     padding: 0.1rem 0.5rem;
