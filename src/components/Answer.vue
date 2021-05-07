@@ -33,14 +33,12 @@ export default {
         this.$store.commit('scoreSub', 25);
       }
 
-      this.$store.dispatch('stopCountdown');
       setTimeout(()=>{
         this.$store.dispatch('setNextQuiz')
-        this.$store.dispatch('startCountdown');
         this.correct = false;
         this.wrong = false;
         this.$store.commit('submitingSet', false)
-      }, 2000);
+      }, 500);
       this.$store.dispatch('getRandomQuiz', { tag: this.$store.state.tag, diff: this.$store.state.diff});
     }
   }

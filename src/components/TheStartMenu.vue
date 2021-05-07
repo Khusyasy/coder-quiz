@@ -89,11 +89,9 @@ export default {
         
         this.$store.dispatch('stopCountdown');
         this.$store.commit('scoreSet', 0);
-        setTimeout(()=>{
-            this.$store.dispatch('setNextQuiz');
-            this.$store.commit('timeSet', 60);
-            this.$store.dispatch('startCountdown');
-        }, 2000);
+        this.$store.dispatch('setNextQuiz');
+        this.$store.commit('timeSet', 60);
+        this.$store.dispatch('startCountdown');
     }
   }
 }

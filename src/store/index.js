@@ -6,7 +6,7 @@ export default createStore({
         score: 0,
         time: 0,
         quiz: {},
-        nextQuiz: {},
+        nextQuiz: [],
         play: false,
         submiting: false,
         tag: '',
@@ -59,15 +59,19 @@ export default createStore({
     },
     actions: {
         async setNextQuiz({ commit }) {
-            commit('quizSet', this.state.nextQuiz);
+            var tempQuiz = this.state.nextQuiz;
+            commit('quizSet', tempQuiz.shift());
+            commit('nextQuizSet', tempQuiz);
         },
         async getRandomQuiz({ commit }, { tag, diff }) {
-            await axios.get(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`, {
+            if (this.state.nextQuiz.length > 3) return false;
+
+            await axios.get(`https://quizapi.io/api/v1/questions?limit=10&tags=${tag}&diffculty=${diff}`, {
                 headers: {
                     'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',
                 }
             }).then(res => {
-                commit('nextQuizSet', res.data[0]);
+                commit('nextQuizSet', [...this.state.nextQuiz, ...res.data]);
             });
         },
         startCountdown({ commit, dispatch }) {
