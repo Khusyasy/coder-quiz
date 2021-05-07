@@ -6,6 +6,7 @@ export default createStore({
         score: 0,
         time: 0,
         quiz: {},
+        nextQuiz: {},
         play: false,
         submiting: false,
         tag: '',
@@ -33,6 +34,9 @@ export default createStore({
         quizSet(state, val) {
             state.quiz = val;
         },
+        nextQuizSet(state, val) {
+            state.nextQuiz = val;
+        },
         playSet(state, val) {
             state.play = val;
         },
@@ -47,13 +51,16 @@ export default createStore({
         }
     },
     actions: {
+        async setNextQuiz({ commit }) {
+            commit('quizSet', this.state.nextQuiz);
+        },
         async getRandomQuiz({ commit }, { tag, diff }) {
             await axios.get(`https://quizapi.io/api/v1/questions?limit=1&tags=${tag}&diffculty=${diff}`, {
                 headers: {
                     'X-Api-Key': 'l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3',
                 }
             }).then(res => {
-                commit('quizSet', res.data[0]);
+                commit('nextQuizSet', res.data[0]);
             });
         }
     },

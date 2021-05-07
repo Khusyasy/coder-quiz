@@ -15,7 +15,7 @@ export default {
     }
   },
   methods: {
-    async clicked(){
+    clicked(){
       var correct_answers = this.$store.state.quiz?.correct_answers;
       correct_answers = Object.entries(correct_answers)
                         .map( ([key, value])=>value=='true'?key.substr(0,8):false )
@@ -31,10 +31,13 @@ export default {
         this.wrong = true;
         this.$store.commit('scoreSub', 25);
       }
-      await this.$store.dispatch('getRandomQuiz', { tag: this.$store.state.tag, diff: this.$store.state.diff});
-      this.correct = false;
-      this.wrong = false;
-      this.$store.commit('submitingSet', false)
+      setTimeout(()=>{
+        this.$store.dispatch('setNextQuiz')
+        this.correct = false;
+        this.wrong = false;
+        this.$store.commit('submitingSet', false)
+      }, 2000);
+      this.$store.dispatch('getRandomQuiz', { tag: this.$store.state.tag, diff: this.$store.state.diff});
     }
   }
 }

@@ -81,12 +81,13 @@ export default {
       }
   },
   methods: {
-      play(){
+    async play(){
         this.$store.commit('diffSet', this.diffSelected);
         this.$store.commit('tagSet', this.catSelected);
         this.$store.commit('playSet', true);
-        this.$store.dispatch('getRandomQuiz', { tag: this.catSelected, diff: this.diffSelected});
-      }
+        await this.$store.dispatch('getRandomQuiz', { tag: this.catSelected, diff: this.diffSelected});
+        setTimeout(()=>this.$store.dispatch('setNextQuiz'), 2000);
+    }
   }
 }
 </script>
