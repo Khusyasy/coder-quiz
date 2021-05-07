@@ -86,7 +86,14 @@ export default {
         this.$store.commit('tagSet', this.catSelected);
         this.$store.commit('playSet', true);
         await this.$store.dispatch('getRandomQuiz', { tag: this.catSelected, diff: this.diffSelected});
-        setTimeout(()=>this.$store.dispatch('setNextQuiz'), 2000);
+        
+        this.$store.dispatch('stopCountdown');
+        this.$store.commit('scoreSet', 0);
+        setTimeout(()=>{
+            this.$store.dispatch('setNextQuiz');
+            this.$store.commit('timeSet', 60);
+            this.$store.dispatch('startCountdown');
+        }, 2000);
     }
   }
 }

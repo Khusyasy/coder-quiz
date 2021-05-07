@@ -23,6 +23,7 @@ export default {
       if(this.$store.state.submiting){
         return false;
       }
+      
       this.$store.commit('submitingSet', true)
       if(correct_answers.indexOf(this.option) > -1){
         this.correct = true;
@@ -31,8 +32,11 @@ export default {
         this.wrong = true;
         this.$store.commit('scoreSub', 25);
       }
+
+      this.$store.dispatch('stopCountdown');
       setTimeout(()=>{
         this.$store.dispatch('setNextQuiz')
+        this.$store.dispatch('startCountdown');
         this.correct = false;
         this.wrong = false;
         this.$store.commit('submitingSet', false)

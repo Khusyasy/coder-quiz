@@ -11,6 +11,7 @@ export default createStore({
         submiting: false,
         tag: '',
         diff: '',
+        timeInterval: null,
     },
     mutations: {
         scoreAdd(state, val) {
@@ -48,6 +49,12 @@ export default createStore({
         },
         diffSet(state, val) {
             state.diff = val;
+        },
+        timeIntervalSet(state, val) {
+            state.timeInterval = val;
+        },
+        timeIntervalClear(state) {
+            clearInterval(state.timeInterval)
         }
     },
     actions: {
@@ -62,7 +69,22 @@ export default createStore({
             }).then(res => {
                 commit('nextQuizSet', res.data[0]);
             });
-        }
+        },
+        startCountdown({ commit, dispatch }) {
+            var countdown = () => {
+                commit('timeSub', 1);
+                if (this.state.time < 1) {
+                    dispatch('stopCountdown');
+                    commit('playSet', false);
+                    commit('quizSet', {});
+                }
+            }
+
+            commit('timeIntervalSet', setInterval(countdown, 1000));
+        },
+        stopCountdown({ commit }) {
+            commit('timeIntervalClear')
+        },
     },
     modules: {
     }
