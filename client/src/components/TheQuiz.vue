@@ -9,10 +9,10 @@
           {{ $store.state.quiz?.question || "Loading..." }}
         </h1>
         <Answer
-          v-for="(answer, option) in $store.state.quiz?.answers"
-          :key="option"
-          :text="answer"
-          :option="option"
+          v-for="answer in $store.state.quiz?.answers"
+          :key="answer.option"
+          :text="answer.answer"
+          :option="answer.option"
         />
       </div>
     </div>
