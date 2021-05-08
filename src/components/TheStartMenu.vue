@@ -9,6 +9,7 @@
           :value="cat"
           type="radio"
           v-model="catSelected"
+          @click="playClickSfx"
         />
         <label :for="cat">{{ cat }}</label>
       </div>
@@ -19,7 +20,7 @@
           value=""
           type="radio"
           v-model="catSelected"
-          checked
+          @click="playClickSfx"
         />
         <label for="randomCat">Random</label>
       </div>
@@ -33,6 +34,7 @@
           :value="diff"
           type="radio"
           v-model="diffSelected"
+          @click="playClickSfx"
         />
         <label :for="diff">{{ diff }}</label>
       </div>
@@ -43,7 +45,7 @@
           value=""
           type="radio"
           v-model="diffSelected"
-          checked
+          @click="playClickSfx"
         />
         <label for="randomDiff">Random</label>
       </div>
@@ -53,6 +55,9 @@
 </template>
 
 <script>
+import { useSound } from "@vueuse/sound";
+import clickSfx from "../assets/sfx/click.mp3";
+
 export default {
   name: "StartMenu",
   data() {
@@ -63,8 +68,17 @@ export default {
       diffSelected: "",
     };
   },
+  setup(){
+    const { play: playClickSfx } = useSound(clickSfx);
+
+    return{
+      playClickSfx
+    }
+  },
   methods: {
     async play() {
+      this.playClickSfx();
+
       this.$store.commit("diffSet", this.diffSelected);
       this.$store.commit("tagSet", this.catSelected);
       this.$store.commit("playSet", true);

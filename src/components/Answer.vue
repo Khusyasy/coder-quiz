@@ -9,6 +9,10 @@
 </template>
 
 <script>
+import { useSound } from "@vueuse/sound";
+import correctSfx from "../assets/sfx/correct.mp3";
+import incorrectSfx from "../assets/sfx/incorrect.mp3";
+
 export default {
   name: "Answer",
   props: ["text", "option"],
@@ -16,6 +20,15 @@ export default {
     return {
       correct: false,
       wrong: false,
+    };
+  },
+  setup() {
+    const { play: playCorrectSfx } = useSound(correctSfx);
+    const { play: playIncorrectSfx } = useSound(incorrectSfx);
+
+    return {
+      playCorrectSfx,
+      playIncorrectSfx,
     };
   },
   methods: {
@@ -30,9 +43,11 @@ export default {
 
       this.$store.commit("submitingSet", true);
       if (correct_answers.indexOf(this.option) > -1) {
+        this.playCorrectSfx();
         this.correct = true;
         this.$store.commit("scoreAdd", 100);
       } else {
+        this.playIncorrectSfx();
         this.wrong = true;
         this.$store.commit("scoreSub", 25);
       }
