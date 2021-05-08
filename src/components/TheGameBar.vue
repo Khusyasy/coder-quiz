@@ -1,14 +1,18 @@
 <template>
   <div class="game-bar">
-    <p>Score: <span class="big">{{$store.state.score}}</span></p>
-    <p>Time: <span class="big">{{$store.state.time}}</span> s</p>
+    <p>
+      Score: <span class="big">{{ $store.state.score }}</span>
+    </p>
+    <p>
+      Time: <span class="big">{{ $store.state.time }}</span> s
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'GameBar',
-}
+  name: "GameBar",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -27,11 +31,11 @@ export default {
   border-radius: 5px;
   margin: 1rem 0;
 
-  p{
+  p {
     padding: 0.1rem 0.5rem;
   }
 
-  .big{
+  .big {
     font-size: 1.75rem;
   }
 }

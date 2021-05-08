@@ -1,48 +1,55 @@
 <template>
-  <p :class="{answer: true, wrong: wrong, correct: correct}" v-if="text" @click="clicked">
-    {{text}}
+  <p
+    :class="{ answer: true, wrong: wrong, correct: correct }"
+    v-if="text"
+    @click="clicked"
+  >
+    {{ text }}
   </p>
 </template>
 
 <script>
 export default {
-  name: 'Answer',
-  props: ['text', 'option'],
-  data(){
+  name: "Answer",
+  props: ["text", "option"],
+  data() {
     return {
       correct: false,
       wrong: false,
-    }
+    };
   },
   methods: {
-    clicked(){
+    clicked() {
       var correct_answers = this.$store.state.quiz?.correct_answers;
       correct_answers = Object.entries(correct_answers)
-                        .map( ([key, value])=>value=='true'?key.substr(0,8):false )
-                        .filter(e=>e);
-      if(this.$store.state.submiting){
+        .map(([key, value]) => (value == "true" ? key.substr(0, 8) : false))
+        .filter((e) => e);
+      if (this.$store.state.submiting) {
         return false;
       }
-      
-      this.$store.commit('submitingSet', true)
-      if(correct_answers.indexOf(this.option) > -1){
+
+      this.$store.commit("submitingSet", true);
+      if (correct_answers.indexOf(this.option) > -1) {
         this.correct = true;
-        this.$store.commit('scoreAdd', 100);
-      }else{
+        this.$store.commit("scoreAdd", 100);
+      } else {
         this.wrong = true;
-        this.$store.commit('scoreSub', 25);
+        this.$store.commit("scoreSub", 25);
       }
 
-      setTimeout(()=>{
-        this.$store.dispatch('setNextQuiz')
+      setTimeout(() => {
+        this.$store.dispatch("setNextQuiz");
         this.correct = false;
         this.wrong = false;
-        this.$store.commit('submitingSet', false)
+        this.$store.commit("submitingSet", false);
       }, 500);
-      this.$store.dispatch('getRandomQuiz', { tag: this.$store.state.tag, diff: this.$store.state.diff});
-    }
-  }
-}
+      this.$store.dispatch("getRandomQuiz", {
+        tag: this.$store.state.tag,
+        diff: this.$store.state.diff,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -60,19 +67,19 @@ export default {
   text-justify: inter-word;
   cursor: pointer;
 
-  @include for-desktop{
+  @include for-desktop {
     &:hover {
       background-color: $green-l;
       color: $black;
     }
   }
 
-  &.wrong{
+  &.wrong {
     background-color: $red-l;
     color: $black;
   }
 
-  &.correct{
+  &.correct {
     background-color: $green-d;
     color: $white;
   }

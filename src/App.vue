@@ -4,8 +4,8 @@
       <h1>CoderQuiz</h1>
     </div>
     <div>
-      <router-link :to="{name: 'Play'}">Play</router-link>
-      <router-link :to="{name: 'About'}">About</router-link>
+      <router-link :to="{ name: 'Play' }">Play</router-link>
+      <router-link :to="{ name: 'About' }">About</router-link>
       <!-- <router-link to="/login">Login</router-link> -->
     </div>
   </div>
@@ -15,9 +15,9 @@
 <style lang="scss">
 @import "variables";
 
-:root{
+:root {
   font-size: 12px;
-  @include for-desktop{
+  @include for-desktop {
     font-size: 16px;
   }
 }

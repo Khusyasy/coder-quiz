@@ -6,16 +6,16 @@
 </template>
 
 <script>
-import Quiz from '../components/TheQuiz'
-import GameBar from '../components/TheGameBar'
+import Quiz from "../components/TheQuiz";
+import GameBar from "../components/TheGameBar";
 
 export default {
-  name: 'Play',
+  name: "Play",
   components: {
     Quiz,
-    GameBar
-  }
-}
+    GameBar,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
