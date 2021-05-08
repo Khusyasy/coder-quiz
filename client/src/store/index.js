@@ -65,16 +65,8 @@ export default createStore({
     },
     async getRandomQuiz({ commit }, { tag, diff }) {
       if (this.state.nextQuiz.length > 3) return false;
-
       await axios
-        .get(
-          `https://quizapi.io/api/v1/questions?limit=10&tags=${tag}&diffculty=${diff}`,
-          {
-            headers: {
-              "X-Api-Key": "l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3",
-            },
-          }
-        )
+        .get(`api/quiz?tag=${tag}&diff=${diff}`)
         .then((res) => {
           commit("nextQuizSet", [...this.state.nextQuiz, ...res.data]);
         });

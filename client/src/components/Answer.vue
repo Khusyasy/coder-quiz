@@ -33,15 +33,12 @@ export default {
   },
   methods: {
     clicked() {
-      var correct_answers = this.$store.state.quiz?.correct_answers;
-      correct_answers = Object.entries(correct_answers)
-        .map(([key, value]) => (value == "true" ? key.substr(0, 8) : false))
-        .filter((e) => e);
       if (this.$store.state.submiting) {
         return false;
       }
-
       this.$store.commit("submitingSet", true);
+
+      var correct_answers = this.$store.state.quiz?.correct_answers;
       if (correct_answers.indexOf(this.option) > -1) {
         this.playCorrectSfx();
         this.correct = true;
