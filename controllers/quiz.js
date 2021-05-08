@@ -1,11 +1,10 @@
 var axios = require("axios");
 
 function processAnswers(answers) {
-    var newAnswers = {};
-    Object.entries(answers)
+    return Object.entries(answers)
         .filter(([option, answer]) => answer !== null)
-        .forEach(([option, answer])=>newAnswers[option] = answer);
-    return newAnswers;
+        .sort(_ => Math.random() - 0.5)
+        .map(([option, answer])=>({option, answer}));
 }
 
 function processCorrectAnswers(correct_answers){
