@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "concurrently \"nodemon ./bin/www\" \"cd ./client && npm run serve\"",
-    "build": "npm i && cd ./client && npm i && npm run build"
+    "build": "npm i && cd ./client && npm i --only=dev && npm i && npm run build"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
