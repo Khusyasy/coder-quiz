@@ -1,6 +1,6 @@
 # coder-quiz
 
-## Project setup
+## Client setup
 ```
 npm install
 ```
