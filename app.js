@@ -15,8 +15,10 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 require("./database/config");
 
 var quizRouter = require("./routes/quiz")
+var scoresRouter = require("./routes/scores")
 
 app.use("/api/quiz", quizRouter);
+app.use("/api/scores", scoresRouter);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
