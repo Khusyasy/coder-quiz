@@ -51,6 +51,7 @@
       </div>
     </form>
     <button class="btn-play" @click="play">PLAY</button>
+    <router-link :to="{ name: 'About' }" class="link">How to play</router-link>
   </div>
 </template>
 
@@ -155,5 +156,12 @@ export default {
     background-color: $green-l;
     color: $black;
   }
+}
+
+.link{
+  display: block;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  color: $white;
 }
 </style>
