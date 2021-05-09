@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/dist')));
 
+require("./database/config");
+
 var quizRouter = require("./routes/quiz")
 
 app.use("/api/quiz", quizRouter);
