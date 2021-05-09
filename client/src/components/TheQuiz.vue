@@ -38,12 +38,11 @@ export default {
 <style lang="scss" scoped>
 @import "../variables";
 .quiz-info {
-  position: absolute;
-  top: 0;
   color: $white;
   font-family: $font-code;
   font-size: 0.9rem;
-  padding: 0.1rem;
+  margin: 0;
+  text-align: left;
 }
 h1 {
   color: $white;
