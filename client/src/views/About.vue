@@ -44,7 +44,8 @@
 .about {
   max-width: 100ch;
   margin: auto;
-  height: calc(100vh - 4rem);
+  min-height: calc(100vh - 6rem);
+  padding: 1rem 2rem;
   color: $green-d;
 }
 
