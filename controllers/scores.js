@@ -11,8 +11,14 @@ exports.getByTagAndDiff = async function (req, res, next) {
 exports.setScore = async function (req, res, next) {
     var tag = req.params.tag;
     var diff = req.params.diff;
+    var user = {
+        id: 100,
+        username: "Khusyasy",
+        avatar_url: "testurl"
+    }
     var score = new Score({
         _id: mongoose.Types.ObjectId(),
+        user: user,
         category: tag,
         difficulty: diff,
         score: 1000,
