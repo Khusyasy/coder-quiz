@@ -1,5 +1,6 @@
-const mongoose = require("mongoose");
-const Score = require("../models/score");
+var mongoose = require("mongoose");
+var Score = require("../models/score");
+var jwt = require("jsonwebtoken");
 
 exports.getByTagAndDiff = async function (req, res, next) {
     var tag = req.query.tag || "";
@@ -9,24 +10,34 @@ exports.getByTagAndDiff = async function (req, res, next) {
 }
 
 exports.setScore = async function (req, res, next) {
-    var tag = req.params.tag;
-    var diff = req.params.diff;
-    var user = {
-        id: 100,
-        username: "Khusyasy",
-        avatar_url: "testurl"
-    }
-    var score = new Score({
-        _id: mongoose.Types.ObjectId(),
-        user: user,
-        category: tag,
-        difficulty: diff,
-        score: 1000,
-    });
     try {
+        var tag = req.params.tag;
+        var diff = req.params.diff;
+        
+        var user = {};
+        if (req.cookies.jwt) {
+            var { id, username, avatar_url } = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
+            user = {
+                id,
+                username,
+                avatar_url,
+            }
+        } else {
+            throw "missing JWT";
+        }
+
+        var score = new Score({
+            _id: mongoose.Types.ObjectId(),
+            user: user,
+            category: tag,
+            difficulty: diff,
+            score: req.body.score
+        });
+
         await score.save();
         res.json(score);
     } catch (err) {
-        res.json(err);
+        console.log(err);
+        res.json({err});
     }
 }
