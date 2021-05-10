@@ -16,9 +16,11 @@ require("./database/config");
 
 var quizRouter = require("./routes/quiz")
 var scoresRouter = require("./routes/scores")
+var authRouter = require("./routes/auth")
 
 app.use("/api/quiz", quizRouter);
 app.use("/api/scores", scoresRouter);
+app.use("/auth", authRouter);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/dist/index.html'));
