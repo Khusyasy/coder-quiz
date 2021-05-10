@@ -18,9 +18,9 @@ import LoginButton from "./components/LoginButton";
 export default {
   name: "App",
   components: {
-    LoginButton
-  }
-}
+    LoginButton,
+  },
+};
 </script>
 
 <style lang="scss">

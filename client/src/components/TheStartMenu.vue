@@ -69,12 +69,12 @@ export default {
       diffSelected: "",
     };
   },
-  setup(){
+  setup() {
     const { play: playClickSfx } = useSound(clickSfx);
 
-    return{
-      playClickSfx
-    }
+    return {
+      playClickSfx,
+    };
   },
   methods: {
     async play() {
@@ -158,7 +158,7 @@ export default {
   }
 }
 
-.link{
+.link {
   display: block;
   padding: 0.5rem 0;
   margin: 0.5rem 0;

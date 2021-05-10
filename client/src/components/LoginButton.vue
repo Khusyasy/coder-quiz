@@ -1,6 +1,9 @@
 <template>
-
-  <div class="click-blocker" v-if="isOpen" @click="()=>toggleDropdown(false)"></div>
+  <div
+    class="click-blocker"
+    v-if="isOpen"
+    @click="() => toggleDropdown(false)"
+  ></div>
 
   <div class="dropdown-container" v-if="$cookies.isKey('jwt')">
     <a @click="toggleDropdown">User</a>
@@ -10,37 +13,37 @@
   </div>
 
   <div class="dropdown-container" v-else>
-    <button @click="()=>toggleDropdown()">Login</button>
+    <button @click="() => toggleDropdown()">Login</button>
     <div class="dropdown" v-if="isOpen">
       <a href="/auth/login">LOGIN WITH GITHUB</a>
     </div>
   </div>
-
 </template>
 <script>
 export default {
   name: "LoginButton",
   data() {
     return {
-      isOpen: false
-    }
+      isOpen: false,
+    };
   },
   methods: {
-    toggleDropdown(isOpen = null){
-      if(isOpen != null){
-      this.isOpen = isOpen;
-      }else{
+    toggleDropdown(isOpen = null) {
+      if (isOpen != null) {
+        this.isOpen = isOpen;
+      } else {
         this.isOpen = !this.isOpen;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "../variables";
 
-a, button {
+a,
+button {
   all: unset;
   font-weight: bold;
   color: $white;
@@ -65,7 +68,7 @@ a, button {
   z-index: 999;
 }
 
-.dropdown-container{
+.dropdown-container {
   display: inline-block;
   position: relative;
   margin: 0;
@@ -85,6 +88,4 @@ a, button {
     transition: all 150ms ease-in-out;
   }
 }
-
-
 </style>
