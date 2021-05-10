@@ -1,4 +1,7 @@
 <template>
+
+  <div class="click-blocker" v-if="isOpen" @click="()=>toggleDropdown(false)"></div>
+
   <div class="dropdown-container" v-if="$cookies.isKey('jwt')">
     <a @click="toggleDropdown">User</a>
     <div class="dropdown" v-if="isOpen">
@@ -52,15 +55,27 @@ a, button {
   }
 }
 
+.click-blocker {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+}
+
 .dropdown-container{
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    padding: 0;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
 
   & .dropdown {
     display: inline-block;
     position: absolute;
+    width: max-content;
     right: 0;
     top: 2rem;
     padding: 1rem;
