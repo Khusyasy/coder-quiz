@@ -6,11 +6,22 @@
     <div>
       <router-link :to="{ name: 'Play' }">Play</router-link>
       <router-link :to="{ name: 'About' }">About</router-link>
-      <!-- <router-link to="/login">Login</router-link> -->
+      <LoginButton></LoginButton>
     </div>
   </div>
   <router-view />
 </template>
+
+<script>
+import LoginButton from "./components/LoginButton";
+
+export default {
+  name: "App",
+  components: {
+    LoginButton
+  }
+}
+</script>
 
 <style lang="scss">
 @import "variables";
