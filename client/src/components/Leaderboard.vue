@@ -21,6 +21,10 @@
         </tr>
       </tbody>
     </table>
+    <button @click="submitScore" v-if="$cookies.isKey('jwt')">
+      Submit your score
+    </button>
+    <button v-else>Login and Submit your score</button>
   </div>
 </template>
 
@@ -35,10 +39,31 @@ export default {
     };
   },
   async created() {
-    var res = await axios.get(
-      `api/scores?tag=${this.$store.state.tag}&diff=${this.$store.state.diff}`
-    );
-    this.scores = res.data;
+    await this.getScores();
+  },
+  methods: {
+    async getScores() {
+      var res = await axios.get(
+        `api/scores?tag=${this.$store.state.tag || "Random"}&diff=${
+          this.$store.state.diff || "Random"
+        }`
+      );
+      this.scores = res.data;
+    },
+    async submitScore() {
+      var res = await axios({
+        method: "POST",
+        url: `api/scores/${this.$store.state.tag || "Random"}/${
+          this.$store.state.diff || "Random"
+        }`,
+        withCredentials: true,
+        data: `score=${this.$store.state.score}`,
+        headers: {
+          "content-type": "application/x-www-form-urlencoded",
+        },
+      });
+      await this.getScores();
+    },
   },
 };
 </script>
@@ -73,6 +98,22 @@ table {
   th,
   td {
     padding: 0.25rem;
+  }
+}
+
+button {
+  background-color: $green;
+  color: $white;
+  transition: ease-in-out 150ms;
+  width: 100%;
+  border: 2px solid $green-l;
+  padding: 0.5rem 0;
+  font-family: $font-code;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $green-l;
+    color: $black;
   }
 }
 </style>
