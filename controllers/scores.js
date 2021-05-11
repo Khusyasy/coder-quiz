@@ -29,7 +29,9 @@ exports.setScore = async function (req, res, next) {
         }
 
         var score = await Score.findOne({
-            "user.id": user.id
+            "user.id": user.id,
+            "category": tag,
+            "difficulty": diff
         });
 
         if (score) {
