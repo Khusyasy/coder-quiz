@@ -1,6 +1,6 @@
 <template>
   <div class="leaderboard">
-    <h3>Leaderboard</h3>
+    <h3 class="title">Leaderboard</h3>
     <table>
       <thead>
         <tr>
@@ -21,10 +21,12 @@
         </tr>
       </tbody>
     </table>
-    <button @click="submitScore" v-if="$cookies.isKey('jwt')">
-      Submit your score
-    </button>
-    <button v-else>Login and Submit your score</button>
+    <template v-if="allowSubmit">
+      <button @click="submitScore" v-if="$cookies.isKey('jwt')">
+        Submit your score
+      </button>
+      <button v-else>Login and Submit your score</button>
+    </template>
   </div>
 </template>
 
@@ -38,15 +40,18 @@ export default {
       scores: [],
     };
   },
+  props: {
+    tag: String,
+    diff: String,
+    allowSubmit: Boolean,
+  },
   async created() {
     await this.getScores();
   },
   methods: {
     async getScores() {
       var res = await axios.get(
-        `api/scores?tag=${this.$store.state.tag || "Random"}&diff=${
-          this.$store.state.diff || "Random"
-        }`
+        `api/scores?tag=${this.tag || "Random"}&diff=${this.diff || "Random"}`
       );
       this.scores = res.data;
     },
@@ -74,12 +79,19 @@ export default {
 .leaderboard {
   height: calc(100% - 2rem);
   width: calc(100% - 2rem);
+  max-height: 50vh;
+  max-width: 50vw;
   margin: 1rem;
   border: 1px solid $green-l;
+  background-color: $green;
+  border-radius: 5px;
+}
+
+.title {
+  color: $white;
 }
 
 table {
-  height: calc(100% - 2rem);
   width: calc(100% - 2rem);
   margin: 1rem;
   border: 1px solid $green-d;

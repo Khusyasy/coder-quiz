@@ -1,7 +1,11 @@
 <template>
   <div class="end-menu">
     <h1>Time's Up</h1>
-    <Leaderboard />
+    <Leaderboard
+      :tag="$store.state.tag"
+      :diff="$store.state.diff"
+      :allowSubmit="true"
+    />
     <button @click="newGame">New Game</button>
   </div>
 </template>
