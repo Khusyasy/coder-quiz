@@ -5,6 +5,7 @@
     </div>
     <div>
       <router-link :to="{ name: 'Play' }">Play</router-link>
+      <router-link :to="{ name: 'Leaderboard' }">Leaderboard</router-link>
       <router-link :to="{ name: 'About' }">About</router-link>
       <LoginButton></LoginButton>
     </div>
