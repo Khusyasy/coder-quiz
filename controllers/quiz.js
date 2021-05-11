@@ -28,7 +28,7 @@ exports.random = async function (req, res, next) {
     await axios
         .get(`https://quizapi.io/api/v1/questions?limit=10&tags=${tag}&diffculty=${diff}`,{
             headers: {
-                "X-Api-Key": "l5hxx3nuI016ykQpgAsd7UIkBg5lbIW5y1gUV5O3",
+                "X-Api-Key": process.env.QUIZAPI_KEY,
             }
         })
         .then(({ data }) => {

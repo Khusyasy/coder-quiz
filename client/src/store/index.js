@@ -65,11 +65,9 @@ export default createStore({
     },
     async getRandomQuiz({ commit }, { tag, diff }) {
       if (this.state.nextQuiz.length > 3) return false;
-      await axios
-        .get(`api/quiz?tag=${tag}&diff=${diff}`)
-        .then((res) => {
-          commit("nextQuizSet", [...this.state.nextQuiz, ...res.data]);
-        });
+      await axios.get(`api/quiz?tag=${tag}&diff=${diff}`).then((res) => {
+        commit("nextQuizSet", [...this.state.nextQuiz, ...res.data]);
+      });
     },
     startCountdown({ commit, dispatch }) {
       var countdown = () => {
