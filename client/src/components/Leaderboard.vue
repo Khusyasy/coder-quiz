@@ -92,7 +92,6 @@ export default {
 }
 
 table {
-  height: calc(100% - 2rem);
   width: calc(100% - 2rem);
   margin: 1rem;
   border: 1px solid $green-d;
