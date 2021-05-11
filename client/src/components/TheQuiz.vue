@@ -16,6 +16,9 @@
         />
       </div>
     </div>
+    <div v-else-if="$store.state.score !== 0">
+      <EndMenu />
+    </div>
     <div v-else>
       <StartMenu />
     </div>
@@ -25,12 +28,14 @@
 <script>
 import Answer from "./Answer";
 import StartMenu from "./TheStartMenu";
+import EndMenu from "./TheEndMenu";
 
 export default {
   name: "Quiz",
   components: {
     Answer,
     StartMenu,
+    EndMenu,
   },
 };
 </script>
