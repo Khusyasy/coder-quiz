@@ -40,6 +40,7 @@
         </template>
         <template v-slot:dropdown>
           <div v-if="$cookies.isKey('jwt')">
+            <UserProfile />
             <a href="/auth/logout" @click="setOpenDropdown('all', false)">
               Logout
             </a>
@@ -58,11 +59,13 @@
 
 <script>
 import ButtonDropdown from "./components/ButtonDropdown";
+import UserProfile from "./components/UserProfile";
 
 export default {
   name: "App",
   components: {
     ButtonDropdown,
+    UserProfile,
   },
   data() {
     return {
