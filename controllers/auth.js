@@ -7,6 +7,8 @@ exports.login = async function (req, res, next) {
 
 exports.logout = function (req, res, next) {
     res.clearCookie("jwt");
+    res.clearCookie("username");
+    res.clearCookie("avatar_url");
     res.redirect("/");
 }
 
