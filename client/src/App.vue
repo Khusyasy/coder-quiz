@@ -3,23 +3,86 @@
     <div>
       <h1>CoderQuiz</h1>
     </div>
-    <div>
-      <router-link :to="{ name: 'Play' }">Play</router-link>
-      <router-link :to="{ name: 'Leaderboard' }">Leaderboard</router-link>
+    <div class="nav-items">
+      <div
+        class="click-blocker"
+        v-if="isOpen.some((e) => e)"
+        @click="setOpenDropdown('all', false)"
+      />
+      <ButtonDropdown :isOpen="isOpen[0]">
+        <template v-slot:btn>
+          <a @click="setOpenDropdown(0)">Quiz</a>
+        </template>
+        <template v-slot:dropdown>
+          <router-link
+            :to="{ name: 'Play' }"
+            @click="setOpenDropdown('all', false)"
+          >
+            Play
+          </router-link>
+          <router-link
+            :to="{ name: 'Leaderboard' }"
+            @click="setOpenDropdown('all', false)"
+          >
+            Ranks
+          </router-link>
+        </template>
+      </ButtonDropdown>
       <router-link :to="{ name: 'About' }">About</router-link>
-      <LoginButton></LoginButton>
+      <ButtonDropdown :isOpen="isOpen[1]">
+        <template v-slot:btn>
+          <div v-if="$cookies.isKey('jwt')">
+            <a @click="setOpenDropdown(1)">User</a>
+          </div>
+          <div v-else>
+            <a @click="setOpenDropdown(1)">Login</a>
+          </div>
+        </template>
+        <template v-slot:dropdown>
+          <div v-if="$cookies.isKey('jwt')">
+            <UserProfile />
+            <a href="/auth/logout" @click="setOpenDropdown('all', false)">
+              Logout
+            </a>
+          </div>
+          <div v-else>
+            <a href="/auth/login" @click="setOpenDropdown('all', false)">
+              Login with GitHub
+            </a>
+          </div>
+        </template>
+      </ButtonDropdown>
     </div>
   </div>
   <router-view />
 </template>
 
 <script>
-import LoginButton from "./components/LoginButton";
+import ButtonDropdown from "./components/ButtonDropdown";
+import UserProfile from "./components/UserProfile";
 
 export default {
   name: "App",
   components: {
-    LoginButton,
+    ButtonDropdown,
+    UserProfile,
+  },
+  data() {
+    return {
+      isOpen: [false, false],
+    };
+  },
+  methods: {
+    setOpenDropdown(n, isOpen = null) {
+      this.isOpen = this.isOpen.map(() => false);
+      if (n == "all") {
+        this.isOpen = this.isOpen.map(() => isOpen);
+      } else if (isOpen !== null) {
+        this.isOpen = this.isOpen.map((_, i) => (n == i ? isOpen : false));
+      } else {
+        this.isOpen = this.isOpen.map((_, i) => (n == i ? !isOpen : false));
+      }
+    },
   },
 };
 </script>
@@ -60,6 +123,26 @@ body {
   justify-items: center;
   background-color: $green;
 
+  .nav-items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    column-gap: 0.25rem;
+  }
+
+  .click-blocker {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999;
+  }
+
   h1 {
     margin: 0;
     color: $white;
@@ -70,6 +153,8 @@ body {
     color: $white;
     text-decoration: none;
     padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    border: 1px solid $white;
 
     &.router-link-exact-active {
       color: $green;

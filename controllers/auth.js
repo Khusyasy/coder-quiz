@@ -7,6 +7,8 @@ exports.login = async function (req, res, next) {
 
 exports.logout = function (req, res, next) {
     res.clearCookie("jwt");
+    res.clearCookie("username");
+    res.clearCookie("avatar_url");
     res.redirect("/");
 }
 
@@ -34,6 +36,8 @@ exports.callback = async function (req, res, next) {
             avatar_url: user.avatar_url,
         }, process.env.JWT_SECRET);
         res.cookie("jwt", signedUser);
+        res.cookie("username", user.login);
+        res.cookie("avatar_url", user.avatar_url);
 
         res.redirect("/");
     } catch (err) {

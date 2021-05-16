@@ -25,7 +25,9 @@
       <button @click="submitScore" v-if="$cookies.isKey('jwt')">
         Submit your score
       </button>
-      <button v-else>Login and Submit your score</button>
+      <button @click="loginSubmitScore" v-else>
+        Login and Submit your score
+      </button>
     </template>
   </div>
 </template>
@@ -69,6 +71,30 @@ export default {
       });
       await this.getScores();
     },
+    async loginSubmitScore() {
+      var auth_popup = window.open(
+        "http://localhost:3000/auth/login",
+        "Login",
+        `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=300,height=400,left=100,top=100`
+      );
+
+      async function cookiesChanged(popup) {
+        return new Promise((resolve, reject) => {
+          var old = popup.document.cookie;
+          var interval = setInterval(() => {
+            if (old !== popup.document.cookie) {
+              clearInterval(interval);
+              resolve(popup.document.cookie);
+            }
+          }, 250);
+        });
+      }
+
+      await cookiesChanged(auth_popup);
+
+      auth_popup.close();
+      await this.submitScore();
+    },
   },
 };
 </script>
@@ -78,10 +104,9 @@ export default {
 
 .leaderboard {
   height: calc(100% - 2rem);
-  width: calc(100% - 2rem);
+  width: calc(100% - 1rem);
   max-height: 50vh;
-  max-width: 50vw;
-  margin: 1rem;
+  margin: 1rem 0.5rem;
   border: 1px solid $green-l;
   background-color: $green;
   border-radius: 5px;
@@ -117,9 +142,9 @@ button {
   background-color: $green;
   color: $white;
   transition: ease-in-out 150ms;
-  width: 100%;
   border: 2px solid $green-l;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
+  margin: 0.5rem;
   font-family: $font-code;
   cursor: pointer;
 
