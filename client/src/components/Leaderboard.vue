@@ -92,7 +92,7 @@ export default {
 
 table {
   width: calc(100% - 2rem);
-  margin: 0 1rem;
+  margin: 1rem;
   border: 1px solid $green-d;
   color: $white;
   border-collapse: collapse;
