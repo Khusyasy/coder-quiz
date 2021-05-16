@@ -57,13 +57,11 @@
 </template>
 
 <script>
-import LoginButton from "./components/LoginButton";
 import ButtonDropdown from "./components/ButtonDropdown";
 
 export default {
   name: "App",
   components: {
-    LoginButton,
     ButtonDropdown,
   },
   data() {
