@@ -73,7 +73,7 @@ export default {
     },
     async loginSubmitScore() {
       var auth_popup = window.open(
-        "http://localhost:3000/auth/login",
+        "auth/login",
         "Login",
         `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=300,height=400,left=100,top=100`
       );
