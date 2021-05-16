@@ -78,10 +78,9 @@ export default {
 
 .leaderboard {
   height: calc(100% - 2rem);
-  width: calc(100% - 2rem);
+  width: calc(100% - 1rem);
   max-height: 50vh;
-  max-width: 50vw;
-  margin: 1rem;
+  margin: 1rem 0.5rem;
   border: 1px solid $green-l;
   background-color: $green;
   border-radius: 5px;
@@ -93,7 +92,7 @@ export default {
 
 table {
   width: calc(100% - 2rem);
-  margin: 1rem;
+  margin: 0 1rem;
   border: 1px solid $green-d;
   color: $white;
   border-collapse: collapse;
@@ -117,9 +116,9 @@ button {
   background-color: $green;
   color: $white;
   transition: ease-in-out 150ms;
-  width: 100%;
   border: 2px solid $green-l;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
+  margin: 0.5rem;
   font-family: $font-code;
   cursor: pointer;
 
