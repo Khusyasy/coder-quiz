@@ -146,6 +146,7 @@ body {
   h1 {
     margin: 0;
     color: $white;
+    font-family: $font-code;
   }
 
   a {
