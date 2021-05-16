@@ -34,6 +34,8 @@ exports.callback = async function (req, res, next) {
             avatar_url: user.avatar_url,
         }, process.env.JWT_SECRET);
         res.cookie("jwt", signedUser);
+        res.cookie("username", user.login);
+        res.cookie("avatar_url", user.avatar_url);
 
         res.redirect("/");
     } catch (err) {
