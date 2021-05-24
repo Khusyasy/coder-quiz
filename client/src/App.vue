@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <div>
-      <h1>CoderQuiz</h1>
+      <h1>KodingKuiz</h1>
     </div>
     <div class="nav-items">
       <div

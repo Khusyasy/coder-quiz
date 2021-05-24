@@ -1,4 +1,6 @@
-# coder-quiz
+# koding-kuiz
+KodingKuiz is a quiz game about programming, coding, and related stuff, so you can test your knowledge about the subject while having fun!
+
 
 ## Client setup
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
