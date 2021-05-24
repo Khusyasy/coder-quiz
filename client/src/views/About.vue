@@ -2,7 +2,7 @@
   <div class="about">
     <h1 id="about-us">About this game</h1>
     <p>
-      CoderQuiz is a quiz game about programming, coding, and related stuff, so
+      KodingKuiz is a quiz game about programming, coding, and related stuff, so
       you can test your knowledge about the subject while having fun!
     </p>
 
@@ -18,7 +18,7 @@
       </li>
     </ul>
 
-    <h1 id="why">Why is this a thing?</h1>
+    <h1 id="why">Why?</h1>
     <p>
       This is a personal project that I (<a
         href="https://www.linkedin.com/in/khusyasy/"
